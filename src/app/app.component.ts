@@ -7,15 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'intership-angular-test-2022';
-  counter: number = 0;
-
-  increaseCounter(): void {
-    this.counter++;
-  }
-
-  decreaseCounter(): void {
-    if (this.counter > 0) {
-      this.counter--;
-    }
-  }
 }

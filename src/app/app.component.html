@@ -1,5 +1,4 @@
-<div class="container p-4 text-left border rounded">
-  <h3>Counter: {{ counter }}</h3>
-  <app-button class="px-1" text="+ Increase" (btnClick)="increaseCounter()"></app-button>
-  <app-button class="px-1" text="- Decrease" [disabled]="counter <= 0" (btnClick)="decreaseCounter()"></app-button>
+<div>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
 </div>
