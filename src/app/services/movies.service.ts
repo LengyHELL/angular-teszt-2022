@@ -15,4 +15,9 @@ export class MoviesService {
     const movies = of(MOVIES);
     return movies;
   }
+
+  deleteMovie(movie: Movie): Observable<Movie[]> {
+    const movies = of(MOVIES);
+    return movies;
+  }
 }

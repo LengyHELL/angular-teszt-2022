@@ -16,4 +16,8 @@ export class MoviesComponent implements OnInit {
     this.moviesService.getMovies().subscribe((movies) => (this.movies = movies))
   }
 
+  deleteMovie(movie: Movie): void {
+    this.moviesService.deleteMovie(movie).subscribe(() => (this.movies = this.movies.filter(m => m.id !== movie.id)));
+  }
+
 }

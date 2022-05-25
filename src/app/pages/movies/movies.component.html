@@ -1,1 +1,13 @@
-<p *ngFor="let movie of movies">{{ movie.title }}</p>
+<div class="container p-4 text-left border rounded">
+    <table class="table table-striped">
+        <tbody>
+            <tr *ngFor="let movie of movies; let i = index" class="align-middle">
+                <td><img src="{{ movie.thumbnail }}" alt="{{ movie.title }}"></td>
+                <td>{{i + 1}}. {{ movie.title }} ({{ movie.year }})</td>
+                <td>{{ movie.rating }}</td>
+                <td><i class="bi bi-pencil"></i></td>
+                <td><i class="bi bi-trash" (click)="deleteMovie(movie)"></i></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
