@@ -1,4 +1,5 @@
-<div class="container mt-4 text-center">
-  <h3>Hello</h3>
-  <app-button text="Click Me"></app-button>
+<div class="container p-4 text-left border rounded">
+  <h3>Counter: {{ counter }}</h3>
+  <app-button class="px-1" text="+ Increase" (btnClick)="increaseCounter()"></app-button>
+  <app-button class="px-1" text="- Decrease" [disabled]="counter <= 0" (btnClick)="decreaseCounter()"></app-button>
 </div>
