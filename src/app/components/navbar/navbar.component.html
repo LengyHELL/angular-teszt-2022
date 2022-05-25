@@ -1,7 +1,7 @@
 <div class="py-4">
     <ul class="container text-left nav nav-tabs">
         <li *ngFor="let current of navbar_list" class="nav-item">
-            <a class="nav-link {{hasRoute(current[1]) ? 'active' : ''}}" routerLink="{{ current[1] }}">{{ current[0] }}</a>
+            <a class="nav-link {{hasRoute(current.route) ? 'active' : ''}}" routerLink="{{ current.route }}">{{ current.name }}</a>
         </li>
     </ul>
 </div>
