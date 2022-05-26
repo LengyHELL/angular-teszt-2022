@@ -56,4 +56,11 @@ export class MoviesComponent implements OnInit {
     this.moviesService.updateMovie(this.movies[index]).subscribe();
   }
 
+  isEdited(id: number): boolean {
+    if (!this.showEditor) {
+      return false;
+    }
+    return this.editId == id;
+  }
+
 }

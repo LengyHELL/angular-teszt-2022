@@ -20,12 +20,12 @@
 
     <label for="sort-div" class="mb-2">Sort by</label>
     <div id="sort-div">
-        
+
     </div>
 
     <table class="table table-striped">
         <tbody>
-            <tr *ngFor="let movie of movies; let i = index" class="align-middle">
+            <tr *ngFor="let movie of movies; let i = index" class="align-middle {{isEdited(movie.id) ? 'table-info' : ''}}">
                 <td style="width:5%"><img src="{{ movie.thumbnail }}" alt="{{ movie.title }}"></td>
                 <td>{{i + 1}}. {{ movie.title }} ({{ movie.year }})</td>
                 <td style="width:2%">{{ movie.rating }}</td>
