@@ -16,10 +16,16 @@ export class MoviesComponent implements OnInit {
   year: number = 1900;
   rating: number = 1.0;
 
+  descending: boolean = true;
+  sortOption: number = 0;
+
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
     this.moviesService.getMovies().subscribe((movies) => (this.movies = movies))
+    this.descending = true;
+    this.sortOption = 0;
+    this.runSorter();
   }
 
   deleteMovie(movie: Movie): void {
@@ -27,6 +33,10 @@ export class MoviesComponent implements OnInit {
   }
 
   editMovie(movie: Movie): void {
+    if (this.showEditor && (this.editId == movie.id)) {
+      this.showEditor = false;
+      return;
+    }
     this.editId = movie.id;
     this.title = movie.title;
     this.year = movie.year;
@@ -53,6 +63,7 @@ export class MoviesComponent implements OnInit {
     this.movies[index].year = this.year;
     this.movies[index].rating = this.rating;
     this.showEditor = false;
+    this.runSorter();
     this.moviesService.updateMovie(this.movies[index]).subscribe();
   }
 
@@ -61,6 +72,20 @@ export class MoviesComponent implements OnInit {
       return false;
     }
     return this.editId == id;
+  }
+
+  runSorter(): void {
+    if (this.sortOption == 0) { // by rating
+      this.movies.sort((a, b) => (a.rating - b.rating));
+    }
+    else if (this.sortOption == 1) { // by title
+      this.movies.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    else if (this.sortOption == 2) { // by year
+      this.movies.sort((a, b) => (a.year - b.year));
+    }
+
+    if (this.descending) { this.movies.reverse(); }
   }
 
 }

@@ -1,26 +1,46 @@
 <div class="container p-4 text-left border rounded">
 
-    <label *ngIf="showEditor" for="edit-form" class="mb-2">Edit movie</label>
-    <form *ngIf="showEditor" class="border-0" id="edit-form" (ngSubmit)="onSubmit()">
-        <div class="float-start input-group mx-2 mb-4 w-25">
-            <span class="input-group-text" id="basic-addon1">Title</span>
-            <input class="form-control" type="text" name="title" [(ngModel)]="title" id="title">
-        </div>
-        <div class="float-start input-group mx-2 mb-4 w-25">
-            <span class="input-group-text" id="basic-addon1">Year</span>
-            <input class="form-control" type="number" name="year" min="1900" step="1" [(ngModel)]="year" id="year">
-        </div>
-        <div class="float-start input-group mx-2 mb-4 w-25">
-            <span class="input-group-text" id="basic-addon1">Rating</span>
-            <input class="form-control" type="number" name="rating" min="1.0" max="10.0" step="0.5" [(ngModel)]="rating" id="rating">
-        </div>
-        <input type="submit" value="Save" class="btn btn-primary mx-2 mb-4 float-end" [disabled]="!readyToSubmit()">
-        <input type="button" value="Close" class="btn btn-danger mx-2 mb-4 float-end" (click)="showEditor = false">
-    </form>
+    <div>
+        <label *ngIf="showEditor" for="edit-form" class="mb-2">Edit movie</label>
+        <form *ngIf="showEditor" class="border-0" id="edit-form" (ngSubmit)="onSubmit()">
+            <div class="float-start input-group mx-2 mb-4 w-25">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+                <input class="form-control" type="text" name="title" [(ngModel)]="title" id="title">
+            </div>
+            <div class="float-start input-group mx-2 mb-4 w-25">
+                <span class="input-group-text" id="basic-addon1">Year</span>
+                <input class="form-control" type="number" name="year" min="1900" step="1" [(ngModel)]="year" id="year">
+            </div>
+            <div class="float-start input-group mx-2 mb-4 w-25">
+                <span class="input-group-text" id="basic-addon1">Rating</span>
+                <input class="form-control" type="number" name="rating" min="1.0" max="10.0" step="0.5" [(ngModel)]="rating" id="rating">
+            </div>
+            <input type="submit" value="Save" class="btn btn-primary mx-2 mb-4 float-end" [disabled]="!readyToSubmit()">
+            <input type="button" value="Close" class="btn btn-danger mx-2 mb-4 float-end" (click)="showEditor = false">
+        </form>
+    </div>
 
-    <label for="sort-div" class="mb-2">Sort by</label>
-    <div id="sort-div">
+    <div style="clear: both;"></div>
 
+    <div>
+        <label for="sort-selector" class="mb-2">Sort by</label>
+        <div><div class="float-start mx-2 mb-4 w-25">
+            <select (change)="runSorter()" class="form-select" [(ngModel)]="sortOption">
+                <option value="0">Rating</option>
+                <option value="1">Title</option>
+                <option value="2">Year</option>
+            </select>
+        </div></div>
+        <button class="btn btn-primary mx-2 mb-4 float-end" (click)="descending = !descending" (click)="runSorter()">
+            <div *ngIf="(sortOption != 1); else alphabet">
+                <i *ngIf="descending" class="bi bi-sort-down"></i>
+                <i *ngIf="!descending" class="bi bi-sort-down-alt"></i>
+            </div>
+            <ng-template #alphabet>
+                <i *ngIf="descending" class="bi bi-sort-alpha-down-alt"></i>
+                <i *ngIf="!descending" class="bi bi-sort-alpha-down"></i>
+            </ng-template>
+        </button>
     </div>
 
     <table class="table table-striped">
